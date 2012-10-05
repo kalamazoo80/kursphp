@@ -5,15 +5,8 @@ $users = array(array('id' => 1, 'username' => 'Jan', 'email' => 'jan@onet.pl'),
 //echo'<pre>';
 //print_r($users);
 
-
-//print_r($users);
-
-
-//$imiona = array(1 => 'Maria', 'zosia', 'ala', 'magda');
-        //sort ($imiona);
-//echo '<pre>';
-//print_r($imiona);
-
-
+$produkty = array(array('id' => 1, 'nazwa' => 'spodnie', 'cena' => 300),
+                  array('id' => 2, 'nazwa' => 'bluzka', 'cena' => 200),
+                  array('id' => 3, 'nazwa' => 'skarpetki', 'cena' => 100));
 
 ?>

@@ -1,13 +1,9 @@
 <?php
-// jesli nie ma pliku - fatal error
-//require 'file';
-//require_once 'file';
-
-//jesli nie ma pliku - blad
-//include 'file';
-//include_once 'file';
+session_start();
 
 require_once 'baza.php';
+require_once 'funkcje.php';
+//require_once 'koszyk.php';
 
 if(!isset($_GET['sortuj']) && ($_GET['sortuj'] == 'username')){
     foreach ($users as $klucz => $wiersz) {
@@ -26,9 +22,13 @@ if(!isset($_GET['sortuj']) && ($_GET['sortuj'] == 'username')){
     <body>
         <div class="container">
         <h1>Sklep</h1>
+        <div>  
+            <h3>Koszyk</h3>
+            <p>Liczba eproduktow w koszyku <?=count($_SESSION['koszyk']) ?></p>
+        </div>
         <a class="btn" href="index.php?sortuj=username">Sortuj wedlug imion</a>
     <table class="table table-striped table-bordered">
-        <tr>  
+        <tr> 
         <?php foreach ($users as $klucz => $wartosc) {?>
             <th><?= $klucz ?></th>
         <?php } ?>
@@ -43,6 +43,12 @@ if(!isset($_GET['sortuj']) && ($_GET['sortuj'] == 'username')){
         </tr>
         <?php }?>
     </table>
+        </div>
+        <div>
+        <a class="btn" href="index.php?dodaj=1">Dodaj do koszyka</a>
+        </div>
+        <div>
+            <p>Odwiedziles strone <?=licznik() ?> razy</p>
         </div>
    </body>
 </html>
