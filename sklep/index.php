@@ -2,6 +2,7 @@
 session_start();
 
 require_once 'baza.php';
+//require_once 'koszyk.php';
 require_once 'funkcje.php';
 //require_once 'koszyk.php';
 
@@ -24,7 +25,7 @@ if(!isset($_GET['sortuj']) && ($_GET['sortuj'] == 'username')){
         <h1>Sklep</h1>
         <div>  
             <h3>Koszyk</h3>
-            <p>Liczba eproduktow w koszyku <?=count($_SESSION['koszyk']) ?></p>
+            <p>Liczba eproduktow w koszyku <?php echo count($_SESSION['koszyk']) ?></p>
         </div>
         <a class="btn" href="index.php?sortuj=username">Sortuj wedlug imion</a>
     <table class="table table-striped table-bordered">
@@ -36,19 +37,19 @@ if(!isset($_GET['sortuj']) && ($_GET['sortuj'] == 'username')){
         </tr>
         <?php foreach ($users as $user) {?>
         <tr>
-            <td><?=$user['id'] ?></td>
-            <td><?=$user['username'] ?></td>
-            <td><?=$user['email'] ?></td>
+            <td><?php echo $user['id'] ?></td>
+            <td><?php echo $user['username'] ?></td>
+            <td><?php echo $user['email'] ?></td>
             <td><a class="btn" href="">Edytuj</a> <a href="" class="btn btn-danger">Usun</a></td>
         </tr>
         <?php }?>
     </table>
         </div>
         <div>
-        <a class="btn" href="index.php?dodaj=1">Dodaj do koszyka</a>
+        <a class="btn" href="koszyk.php?dodaj=1">Dodaj do koszyka</a>
         </div>
         <div>
-            <p>Odwiedziles strone <?=licznik() ?> razy</p>
+            <p>Odwiedziles strone <?php echo licznik() ?> razy</p>
         </div>
    </body>
 </html>

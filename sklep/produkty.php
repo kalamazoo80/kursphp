@@ -24,9 +24,9 @@ require_once ('baza.php');
         </tr>
         <?php foreach ($produkty as $produkt) {?>
         <tr>
-            <td><?=$produkt['id'] ?></td>
-            <td><?=$produkt['nazwa'] ?></td>
-            <td><?=$produkt['cena'] ?></td>
+            <td><?php echo $produkt['id'] ?></td>
+            <td><?php echo $produkt['nazwa'] ?></td>
+            <td><?php echo $produkt['cena'] ?></td>
             <td><a class="btn" href="index.php?dodaj=<?php echo $produkt['id']?>">Dodaj do koszyka</a></td>
         </tr>
         <?php }?>

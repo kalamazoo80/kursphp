@@ -13,4 +13,8 @@ var_dump($_SESSION);
 //unset($_SESSION['koszyk']);
 //session_destroy();
 
+$amount = 2567.9784598;
+$format = 'Suma towarow w koszyku %01.2f';
+echo sprintf($format, $amount);
+
 ?>
