@@ -1,4 +1,4 @@
-<?
+<?php
 function __autoload($class_name){
 	include '../lib/'.strtolower($class_name).'.php';
 }
@@ -16,7 +16,10 @@ $user->cena = 100;
 $obiekt = new stdClass();
 */
 $koszyk = new Koszyk();
-$produkt = new Product();
+
+
+
+$produkt1 = new Product(1);
 
 
 //echo '<pre>';
@@ -28,5 +31,8 @@ echo $uzytkownik1->pobierzDane();
 
 echo '<pre>';
 var_dump($uzytkownik1);
+
+echo '<pre>';
+var_dump($produkt1);
 
 ?>

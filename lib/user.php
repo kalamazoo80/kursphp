@@ -22,7 +22,7 @@ class User extends Baza{
 	
 	
 	public function wypelnijDane(){
-			$dane = $this->pobierz($this->id, 'uzytkownik');			// w domu - zrob zeby dzialao- odpowiednio wbieralo tabele
+			$dane = $this->pobierzUzytkownika($this->id, 'uzytkownik');			// w domu - zrob zeby dzialao- odpowiednio wbieralo tabele
 			foreach($dane as $name => $value){
 				$this->$name = $value;
 			}
