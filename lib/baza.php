@@ -2,7 +2,13 @@
 
 class Baza {
 
-
+	//polaczenie z baza
+	private  $db;
+	
+	public function __construct(){
+		$mysqli = new mysqli('localhost', 'root', '', 'sklep');
+		$this->db = $mysqli;
+	}
 
 
 /*
@@ -33,24 +39,39 @@ class Baza {
 
 
 	public function zapiszUzytkownika($dane){
-		$sql = "INSERT INTO users (id, imie, email, adres) VALUES (NULL, 'Miecio', 'mieciu@sa.pl', 'ul. wesola 12, Warszawa')";
-		
+		if (isset($dane['id'])){
+			$sql = "UPDATE users SET id = NULL, imie = 'Mirek', email = 'mirek@sa.pl', adres = 'ul. wesola 12, Warszawa'";
+		}
+		else {
+			$sql = "INSERT INTO users (id, imie, email, adres) VALUES (NULL, 'Mirek', 'mirek@sa.pl', 'ul. wesola 12, Warszawa')";
+		}
 	}
 	
 	
-	public function pobierzUzytkownikow($dane){
+	public function pobierzUzytkownikow(){
 		$sql = "SELECT * FROM users";
-		
+		$result = $this->db->query($sql);
+		 $users = array();
+		while($obj = $result->fetch_object()){
+			$users[] = $obj;
+			
+		}
+		return $users;
+
 	}
 	
-	public function pobierzUzytkownika($dane){
+	public function pobierzUzytkownika($id){
 		$sql = "SELECT * FROM users WHERE id = $id";
 		
 	}
 	
+	public function usunUzytkownika($id){
+		$id = (int)$id; // w celach bezpieczenstwa - zamienia typ zmiennej na Integer
+		$sql = "DELETE FROM users WHERE id = $id";
+		$this->db->query($sql);
+		return;
+	}
 	
 	
-	
-	
-	SELECT * FROM users WHERE id = $id";
+	//SELECT * FROM users WHERE id = $id";
 }

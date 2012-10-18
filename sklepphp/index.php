@@ -35,4 +35,5 @@ var_dump($uzytkownik1);
 echo '<pre>';
 var_dump($produkt1);
 
+
 ?>
