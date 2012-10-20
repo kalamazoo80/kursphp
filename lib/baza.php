@@ -40,13 +40,20 @@ class Baza {
 
 	public function zapiszUzytkownika($dane){
 		if (isset($dane['id'])){
-			$sql = "UPDATE users SET id = NULL, imie = 'Mirek', email = 'mirek@sa.pl', adres = 'ul. wesola 12, Warszawa'";
+			$sql = "UPDATE users SET imie = ?, email = ?, adres = ? WHERE id = ?";
+			$stmt = $this->db->prepare($sql);
+			$stmt->bind_param('sssd', $dane['imie'], $dane['email'], $dane['adres'], $dane['id']);
+			$stmt->execute();
+			$stmt->close();
 		}
 		else {
-			$sql = "INSERT INTO users (id, imie, email, adres) VALUES (NULL, 'Mirek', 'mirek@sa.pl', 'ul. wesola 12, Warszawa')";
-		}
-	}
-	
+			$sql = "INSERT INTO users VALUES (NULL, ?, ?, ?)";
+			$stmt = $this->db->prepare($sql);
+			$stmt->bind_param('sss', $dane['imie'], $dane['email'], $dane['adres']);
+			$stmt->execute();
+			$stmt->close();
+		}		
+}	
 	
 	public function pobierzUzytkownikow(){
 		$sql = "SELECT * FROM users";
@@ -54,15 +61,14 @@ class Baza {
 		 $users = array();
 		while($obj = $result->fetch_object()){
 			$users[] = $obj;
-			
 		}
 		return $users;
-
 	}
 	
 	public function pobierzUzytkownika($id){
 		$sql = "SELECT * FROM users WHERE id = $id";
-		
+		$result = $this->db->query($sql);
+		return $result->fetch_object();
 	}
 	
 	public function usunUzytkownika($id){
@@ -71,7 +77,5 @@ class Baza {
 		$this->db->query($sql);
 		return;
 	}
-	
-	
-	//SELECT * FROM users WHERE id = $id";
+
 }
